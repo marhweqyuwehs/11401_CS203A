@@ -354,6 +354,6 @@ fox     9
 - Improvements: The implementation is highly robust for standard integer and string inputs. Future improvements could involve using 64-bit data types for the intermediate hash value to handle keys of extreme magnitude.
 
 ## Reflection
-1.Designing hash functions requires balancing simplicity and effectiveness to minimize collisions.
-2.The Multiplication Method using the golden ratio proved highly effective and robust, providing a clear and uniform index sequence across all table sizes tested.
-3.Table size significantly impacts the uniformity of the hash distribution, and while our method mitigated the reliance on prime numbers, selecting a prime $m$ remains the best practice for optimal performance.
+- 1.Designing hash functions requires balancing simplicity and effectiveness to minimize collisions.
+- 2.The Multiplication Method using the golden ratio proved highly effective and robust, providing a clear and uniform index sequence across all table sizes tested.
+- 3.Table size significantly impacts the uniformity of the hash distribution, and while our method mitigated the reliance on prime numbers, selecting a prime $m$ remains the best practice for optimal performance.

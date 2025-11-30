@@ -10,17 +10,33 @@ Email: tsai755197@gmail.com
 ## My Hash Function
 ### Integer Keys 
 - Formula / pseudocode:
-  ```text
-  [Your implementation here]
-  ```
-- Rationale: [Explain your design choices and how they minimize collisions.]
+// Multiplication Method using the Golden Ratio
+int myHashInt(int key, int m) {
+// A is the Golden Ratio constant, approximately 0.6180339887
+const double A = 0.6180339887;
 
+// Calculate the fractional part: kA mod 1
+double frac = (key * A) - (int)(key * A);
+
+// h(k) = floor(m * frac)
+return static_cast<int>(m * frac);
+}
+- Rationale: We chose the Multiplication Method, a robust and general-purpose hashing scheme whose performance is independent of whether the table size $m$ is prime or non-prime. By using the Golden Ratio constant $A$  (0.618), we ensure the fractional part of the product is maximally dispersed across the [0, 1) interval, leading to near-optimal uniform distribution.
 ### Non-integer Keys
-- Formula / pseudocode:
-  ```text
-  [Your implementation here]
-  ```
-- Rationale: [Explain your approach and its effectiveness for non-integer keys.]
+- Formula / pseudocode: 
+ Polynomial Rolling Hash (P=31)
+int myHashString(const std::string& key, int m) {
+const int P = 31;
+long long hashValue = 0;
+long long power = 1;
+for (char c : key) {
+// Core computation: hash_value = (hash_value + char_val * P^i) mod m
+hashValue = (hashValue + (long long)c * power) % m;
+power = (power * P) % m;
+}
+return (int)hashValue;
+}
+- Rationale: We implemented the Polynomial Rolling Hash. This method uses increasing powers of a prime base p=31 to effectively incorporate the character's position and order into the hash value. This design provides excellent dispersion for strings, avoiding collisions common to simpler additive hash methods, and the modulo operation at each step prevents integer overflow
 
 ## Experimental Setup
 - Table sizes tested (m): 10, 11, 37
@@ -33,8 +49,10 @@ Email: tsai755197@gmail.com
 ## Results
 | Table Size (m) | Index Sequence         | Observation              |
 |----------------|------------------------|--------------------------|
-| 10             | 1, 2, 3, 4, ...        | Pattern repeats every 10 |
-| 11             | 10, 0, 1, 2, ...       | More uniform             |
+| 10             | 6, 8, 9, 1, ... The Multiplication Method is robust, but slight clustering is visible in smaller non-prime tables.
+| 11             | 9, 1, 3, 4, ...        
+
+Distribution is noticeably better and more uniform.
 | 37             | 20, 21, 22, 23, ...    | Near-uniform             |
 
 ## Compilation, Build, Execution, and Output
@@ -43,13 +61,13 @@ Email: tsai755197@gmail.com
 - The project uses a comprehensive Makefile that builds both C and C++ versions with proper flags:
   ```bash
   # Build both C and C++ versions
-  make all
+  Makefile.bat
   
   # Build only C version
-  make c
+  Makefile.bat c
   
   # Build only C++ version
-  make cxx
+ Makefile.bat cxx
   ```
 
 ### Manual Compilation (if needed)

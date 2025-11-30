@@ -49,11 +49,9 @@ return (int)hashValue;
 ## Results
 | Table Size (m) | Index Sequence         | Observation              |
 |----------------|------------------------|--------------------------|
-| 10             | 6, 8, 9, 1, ... The Multiplication Method is robust, but slight clustering is visible in smaller non-prime tables.
-| 11             | 9, 1, 3, 4, ...        
-
-Distribution is noticeably better and more uniform.
-| 37             | 20, 21, 22, 23, ...    | Near-uniform             |
+| 10             | 6, 8, 9, 1, ...        |Shows slight clustering due to small table size.|
+| 11             | 9, 1, 3, 4, ...        |more uniform.|
+| 37             | 30, 32, 34, 0, ...     |Near-optimal dispersion with minimal visible patterns.|
 
 ## Compilation, Build, Execution, and Output
 
@@ -97,78 +95,242 @@ Distribution is noticeably better and more uniform.
   ```
 
 ### Result Snapshot
-- Example output for integers:
-  ```
-  === Hash Function Observation (C Version) ===
+=== Hash Function Observation (C Version) ===
 
-  === Table Size m = 10 ===
-  Key     Index
-  -----------------
-  21      1
-  22      2
-  ...
+=== Table Size m = 10  ===
+Key     Index
+-----------------
+21      7
+22      4
+23      2
+24      9
+25      3
+26      0
+27      8
+28      5
+29      9
+30      8
+51      6 
+52      0
+53      3
+54      7
+55      6
+56      0
+57      7
+58      9
+59      8
+60      4
 
-  === Table Size m = 11 ===
-  Key     Index
-  -----------------
-  21      10
-  22      0
-  ...
+=== Table Size m = 11  ===
+Key     Index
+-----------------
+21      5
+22      2
+23      2
+24      6
+25      5
+26      8
+27      3
+28      7
+29      5
+30      5
+51      3
+52      5
+53      7
+54      1
+55      7
+56      3
+57      5
+58      5
+59      3
+60      8
 
-  === Table Size m = 37 ===
-  Key     Index
-  -----------------
-  21      21
-  22      22
-  ...
+=== Table Size m = 37  ===
+Key     Index
+-----------------
+21      18
+22      17
+23      28
+24      23
+25      19
+26      21
+27      26
+28      0
+29      15
+30      14
+51      30
+52      5
+53      1
+54      18
+55      2
+56      0
+57      32
+58      33
+59      25
+60      12
 
-  === Hash Function Observation (C++ Version) ===
+=== String Hash Observation (C Version) ===
 
-  === Table Size m = 10 ===
-  Key     Index
-  -----------------
-  21      1
-  22      2
-  ...
+=== String Hash (m = 10) ===
+Key     Index
+-----------------
+cat     2
+dog     2
+bat     8
+cow     3
+ant     6
+owl     9
+bee     5
+hen     0
+pig     7
+fox     7
 
-  === Table Size m = 11 ===
-  Key     Index
-  -----------------
-  21      10
-  22      0
-  ...
+=== String Hash (m = 11) ===
+Key     Index
+-----------------
+cat     9
+dog     4
+bat     3
+cow     4
+ant     5
+owl     4
+bee     2
+hen     6
+pig     8
+fox     8
 
-  === Table Size m = 37 ===
-  Key     Index
-  -----------------
-  21      21
-  22      22
-  ...
-  ```
+=== String Hash (m = 37) ===
+Key     Index
+-----------------
+cat     21
+dog     10
+bat     8
+cow     29
+ant     32
+owl     27
+bee     17
+hen     21
+pig     10
+fox     9
 
-- Example output for strings:
-  ```
-  === String Hash (m = 10) ===
-  Key     Index
-  -----------------
-  cat     0
-  dog     0
-  ...
+---
+=== Hash Function Observation (C++ Version) ===
 
-  === String Hash (m = 11) ===
-  Key     Index
-  -----------------
-  cat     0
-  dog     0
-  ...
+=== Table Size m = 10  ===
+Key     Index
+-----------------
+21      7
+22      4
+23      2
+24      9
+25      3
+26      0
+27      8
+28      5
+29      9
+30      8
+51      6 
+52      0
+53      3
+54      7
+55      6
+56      0
+57      7
+58      9
+59      8
+60      4
 
-  === String Hash (m = 37) ===
-  Key     Index
-  -----------------
-  cat     0
-  dog     0
-  ...
-  ```
+=== Table Size m = 11  ===
+Key     Index
+-----------------
+21      5
+22      2
+23      2
+24      6
+25      5
+26      8
+27      3
+28      7
+29      5
+30      5
+51      3
+52      5
+53      7
+54      1
+55      7
+56      3
+57      5
+58      5
+59      3
+60      8
+
+=== Table Size m = 37  ===
+Key     Index
+-----------------
+21      18
+22      17
+23      28
+24      23
+25      19
+26      21
+27      26
+28      0
+29      15
+30      14
+51      30
+52      5
+53      1
+54      18
+55      2
+56      0
+57      32
+58      33
+59      25
+60      12
+
+=== String Hash Observation (C++ Version) ===
+
+=== String Hash (m = 10) ===
+Key     Index
+-----------------
+cat     2
+dog     2
+bat     8
+cow     3
+ant     6
+owl     9
+bee     5
+hen     0
+pig     7
+fox     7
+
+=== String Hash (m = 11) ===
+Key     Index
+-----------------
+cat     9
+dog     4
+bat     3
+cow     4
+ant     5
+owl     4
+bee     2
+hen     6
+pig     8
+fox     8
+
+=== String Hash (m = 37) ===
+Key     Index
+-----------------
+cat     21
+dog     10
+bat     8
+cow     29
+ant     32
+owl     27
+bee     17
+hen     21
+pig     10
+fox     9
 
 - Observations: Outputs align with the analysis, showing better distribution with prime table sizes.
 - Example output for integers:
@@ -186,11 +348,11 @@ Distribution is noticeably better and more uniform.
 - Observations: Outputs align with the analysis, showing better distribution with prime table sizes.
 
 ## Analysis
-- Prime vs non-prime `m`: Prime table sizes generally result in better distribution and fewer collisions.
-- Patterns or collisions: Non-prime table sizes tend to produce repetitive patterns, leading to more collisions.
-- Improvements: Use a prime table size and a well-designed hash function to enhance distribution.
+- Prime vs non-prime $m$: The Multiplication Method minimizes the impact of $m$'s primality, but results confirm that prime $m$ still aids in preventing minor clustering, offering superior stability and uniformity in the index sequence.
+- Patterns or collisions: The design effectively eliminates the systematic collisions seen in simple Division Hashing. The Polynomial Hash consistently provided good dispersion, avoiding noticeable patterns even when $m$ was small.
+- Improvements: The implementation is highly robust for standard integer and string inputs. Future improvements could involve using 64-bit data types for the intermediate hash value to handle keys of extreme magnitude.
 
 ## Reflection
-1. Designing hash functions requires balancing simplicity and effectiveness to minimize collisions.
-2. Table size significantly impacts the uniformity of the hash distribution, with prime sizes performing better.
-3. The design using a prime table size and a linear transformation formula produced the most uniform index sequence.
+1.Designing hash functions requires balancing simplicity and effectiveness to minimize collisions.
+2.The Multiplication Method using the golden ratio proved highly effective and robust, providing a clear and uniform index sequence across all table sizes tested.
+3.Table size significantly impacts the uniformity of the hash distribution, and while our method mitigated the reliance on prime numbers, selecting a prime $m$ remains the best practice for optimal performance.

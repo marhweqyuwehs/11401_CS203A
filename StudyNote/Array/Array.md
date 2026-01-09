@@ -144,7 +144,6 @@ for (int i = n / 2; i < n; i++) {
   - Average:O(n²) 
   - Worst:O(n²) 
 
-
 ## 時間複雜度(Time complexity)
 
 | 操作 |複雜度|說明|

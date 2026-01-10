@@ -3,8 +3,8 @@
 
 ## 堆疊(Stack)
 
-- **堆疊(Stack)**堆疊是一種線性的資料結構。
-- 遵循 **後進先出(Last-In-First-Out)**原則，最後加入的元素會最先被移除 。
+- 堆疊(Stack)堆疊是一種線性的資料結構。
+- 遵循 後進先出(Last-In-First-Out)原則，最後加入的元素會最先被移除 。
 
 ## Visualization
 ![stack](Stack.png)
@@ -29,8 +29,8 @@
 
 ## 佇列(Queue)
 
-- **佇列(Queue)**堆疊是一種線性的資料結構。
-- 遵循 **先進先出(First-In-First-Out)**原則，最先加入的元素最先被服務 。
+- 佇列(Queue)堆疊是一種線性的資料結構。
+- 遵循 先進先出(First-In-First-Out)*原則，最先加入的元素最先被服務 。
 
 ## Visualization
 ![queue](Queue.png)

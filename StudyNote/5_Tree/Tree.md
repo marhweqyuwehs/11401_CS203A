@@ -2,8 +2,8 @@
 
 ## 定義(Definition)
 
-**樹(Tree)**是一種**非線性(Non-linear)**的資料結構，用來表示**階層式(Hierarchical)**關係
-- **節點(Node)**與**邊(Edge)**組成
+樹(Tree)是一種非線性(Non-linear)的資料結構，用來表示階層式(Hierarchical)關係
+- 節點(Node)與邊(Edge)組成
 - 不存在 cycle
 - 常用於表示具有上下層關係的資料
 
@@ -26,7 +26,7 @@
       / \
      E   F
 ```
-
+---
 ### **Binary Tree**：每個節點**最多2個子節點**
 ```c
          9
@@ -37,6 +37,7 @@
         / \ / \
        4 18 5 45
 ```
+---
 ### **Binary Search Tree（BST）**：左 < 根 < 右
 ```c
             9
@@ -49,6 +50,7 @@
              /
             5   
 ```
+---
 ### **AVL**:任一節點：| 左高 − 右高 | ≤ 1
 ```c
            10
@@ -61,6 +63,7 @@
              
               
 ```
+---
 ### **Red-Black**:
   - Root 必為黑色
   - 紅色節點不能相鄰
@@ -75,6 +78,7 @@
         (R)4  9(R)   45(R)
                            
 ```
+---
 ## Tree 家族的演化（Conceptual Hierarchy）
 ![Hierarchy](Hierarchy.png)
 

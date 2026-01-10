@@ -7,6 +7,9 @@
 - 不存在 cycle
 - 常用於表示具有上下層關係的資料
 
+## Visualization
+![TREE](tree.png)
+
 ## Tree的基本組成(Components)
 - **(Node)**：節點
   - root :根節點

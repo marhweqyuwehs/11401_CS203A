@@ -25,7 +25,7 @@
 - **Cyclic Graph**:循環圖
 
 ## 表示法(Representation)
-分別是 Adjacency Matrix（鄰接矩陣 和 Adjacency List（鄰接串列）
+分別是 Adjacency Matrix(鄰接矩陣) 和 Adjacency List(鄰接串列)
 ### 1.Adjacency Matrix(鄰接矩陣)
 - 使用 V × V 矩陣
 - matrix[i][j] = 1 / weight 表示存在邊
